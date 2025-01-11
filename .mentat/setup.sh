@@ -1,3 +1,14 @@
+apt-get update
+apt-get install -y unzip
+curl -fsSL https://fnm.vercel.app/install | bash
+export PATH=/root/.local/share/fnm:$PATH
+eval "$(fnm env)"
+fnm install 21
+fnm use 21
+npm install -g pnpm
+mkdir -p openapi-schema-diff
+echo '{"name":"openapi-schema-diff","version":"1.0.0"}' > openapi-schema-diff/package.json
+cat > spiceflow/src/stream.test.ts << 'EOF'
 import { describe, expect, it } from 'vitest'
 import { Stream } from './stream'
 
@@ -100,3 +111,6 @@ describe('Stream', () => {
         })
     })
 })
+EOF
+pnpm install
+pnpm build
